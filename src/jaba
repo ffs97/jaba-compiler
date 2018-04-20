@@ -1,0 +1,23 @@
+#!/bin/sh
+ir_file="out/irgen/`echo $1 | sed -e 's/.*\///g' -e 's/.java//g'`.ir"
+as_file=out/codegen/`echo $1 | sed -e 's/.*\///g' -e 's/.java//g'`.asm
+
+node src/irgen.js $1 $ir_file 2> error.txt
+if [ -s error.txt ]
+then
+    cat error.txt
+else
+	node src/codegen.js $ir_file $as_file
+
+	nasm -f elf32 $as_file -o t.o
+	gcc -m32 t.o -o t
+
+	echo ""
+	echo ""
+
+	./t
+
+	rm t.o
+	rm t
+fi
+rm error.txt
