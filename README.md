@@ -12,8 +12,9 @@ X86 assembly language, and the compiler is implemented using node.js.
 ## Features
 
 **Basic Features**
+
 |      Category     |                         Features                         |
-|:-----------------:|:--------------------------------------------------------:|
+| ----------------- | -------------------------------------------------------- |
 | Types             | Int, Float, Char, Boolean                                |
 | Loops             | For, While                                               |
 | Binary Operations | +-/*, And, Or, Xor, Mod, Relops                          |
